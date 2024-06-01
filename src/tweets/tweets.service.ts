@@ -1,24 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './user.entity';
+import { Tweet } from './tweets.entity';
 
 @Injectable()
-export class UserService {
+export class TweetsService {
   constructor(
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
+    @InjectRepository(Tweet)
+    private userRepository: Repository<Tweet>,
   ) {}
 
-  findAll(): Promise<User[]> {
+  findAll(): Promise<Tweet[]> {
     return this.userRepository.find();
   }
 
-  findOne(id: number): Promise<User> {
+  findOne(id: number): Promise<Tweet> {
     return this.userRepository.findOne({ where: { id } });
   }
 
-  create(user: User): Promise<User> {
+  create(user: Tweet): Promise<Tweet> {
     return this.userRepository.save(user);
   }
 
@@ -26,7 +26,5 @@ export class UserService {
     await this.userRepository.delete(id);
   }
 
-  // tambahkan untuk fungsi mencari user berdasarkan username
-
-  // tambahkan untuk fungsi mencari semua tweets yang dimiliki oleh user
+  // tambahkan untuk fungsi mencari tweets berdasarkan user
 }
