@@ -1,5 +1,6 @@
 import {Entity, Column, PrimaryGeneratedColumn, ManyToOne} from 'typeorm';
 import { Tweet } from './tweets.entity';
+import { User } from 'src/user/user.entity';
 
 @Entity()
 export class Reply {
@@ -29,4 +30,7 @@ export class Reply {
 
     @ManyToOne(() => Tweet, tweet => tweet.replies)
     originalTweet: Tweet;
+
+    @Column()
+    writer: User;
 }
